@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <title>Document</title>
+  <script type="module" src="js_admin/app_admin.js"></script>
+</head>
+
+<body>
+  <!-- <div class="container">
+    <nav class="bg-info p-2">
+      <a class="btn btn-light" href="admin.html">Home</a>
+      <a class="btn btn-light ms-2"  href="admin_add_food.html">Add new food</a>
+    </nav>
+    <h1>Admin panel</h1> -->
+    <div class="container">
+      <h1 class="text-center p-5">API Documentation</h1>
+      <h3 class="text-center pt-4 bg-light">User Route</h3>
+    <table class="table table-striped  users">
+      <thead>
+        <tr>
+          <th>link</th>
+          <th>method</th>
+          <th>action</th>
+          <th>example</th>
+        </tr>
+      </thead>
+      <tbody id="id_tbody_users">
+        <tr>
+          <td>url/users</td>
+          <td>post</td>
+          <td>add new user sign-up</td>
+          <td><a href="http://localhost:3000/users">http://localhost:3000/users</a></td>
+        </tr>
+        <tr>
+          <td>url/users/login</td>
+          <td>post</td>
+          <td>login user sign-in</td>
+          <td><a href="http://localhost:3000/users/login">http://localhost:3000/users/login</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <h3 class="text-center bg-light">Toys Route</h3>
+    <table class="table table-striped  toys">
+      <thead>
+        <tr>
+          <th>link</th>
+          <th>method</th>
+          <th>action</th>
+          <th>example</th>
+        </tr>
+      </thead>
+      <tbody id="id_tbody_toys">
+        <tr>
+          <td>url/toys</td>
+          <td>post *</td>
+          <td>add new toy for correct user</td>
+          <td><a href="http://localhost:3000/toys">http://localhost:3000/toys</a></td>
+        </tr>
+        <tr>
+          <td>url/toys/:idDel(toy id)</td>
+          <td>delete *</td>
+          <td>user can delete by toy id</td>
+          <td><a href="http://localhost:3000/toys/61af9dcf31db906bbe1a5e73">http://localhost:3000/toys/61af9dcf31db906bbe1a5e73</a></td>
+        </tr>
+        <tr>
+          <td>url/toys/:idEdit(toy id)</td>
+          <td>put *</td>
+          <td>aupdate toy</td>
+          <td><a href="http://localhost:3000/toys/61af9dcf31db906bbe1a5e73">http://localhost:3000/toys/61af9dcf31db906bbe1a5e73</a></td>
+        </tr>
+        <tr>
+          <td>url/toys/mytoys</td>
+          <td>get *</td>
+          <td>toy'list by user give 10 item by defult or ?perpage=x(items)</td>
+          <td><a href="http://localhost:3000/toys/mytoys">http://localhost:3000/toys/mytoys</a></td>
+        </tr>
+        <tr>
+          <td>url/toys/mytoys/search/s=x</td>
+          <td>get *</td>
+          <td> search in mytoys and give 10 item by defult or ?perpage=x(items)</td>
+          <td><a href="http://localhost:3000/toys/mytoys/search/?s=l">http://localhost:3000/toys/mytoys/search/?s=l</a></td>
+        </tr>
+        <tr>
+          <td>url/toys/cat/:catname</td>
+          <td>get *</td>
+          <td>by category</td>
+          <td><a href="http://localhost:3000/toys/cat/2">http://localhost:3000/toys/cat/2</a></td>
+        </tr>
+      
+        <tr>
+          <td>url/toys/price/max=x&min=y</td>
+          <td>get</td>
+          <td> give by price between max value(28) and min value(5) </td>
+          <td><a href="http://localhost:3000/toys/price/?min=5&max=28">http://localhost:3000/toys/price/?min=5&max=28</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p> * need atooken</p>
+  </div>
+</body>
+
+</html>
