@@ -3,14 +3,12 @@ const {config}= require("../config/secret");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 
-
 let userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
   phone: String,
   address: String,
-  // role->  אם רגיל או אדמין
   role: {
     type: String, default: "regular"
   },
@@ -20,7 +18,6 @@ let userSchema = new mongoose.Schema({
 })
 
 exports.UserModel = mongoose.model("users", userSchema);
-// מייצר טוקן
 exports.genToken = (_id) => {
  
   let token = jwt.sign({_id:_id}, config.TokenSecret, {expiresIn:"360mins"});

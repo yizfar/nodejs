@@ -3,9 +3,21 @@ const { auth } = require("../middlewares/auth");
 const { toyModel,validatetoy } = require("../Models/toyModel");
 const router = express.Router();
 
-router.get("/", (req,res) => {
-  res.json({msg:"Work toys"})
+// router.get("/", (req,res) => {
+//   res.json({msg:"Work toys"})
+// })
+router.get("/",async (req,res) => {
+  let perPage = req.query.perPage || 10;
+  let page = (req.query.page) ? req.query.page - 1: 0;
+  let sort = req.query.sort || "_id"; 
+  let reverse = req.query.reverse == "yes" ? -1 : 1; 
+  let data = await toyModel.find({})
+  .limit(Number(perPage))
+  .skip(page * perPage)
+  .sort({[sort]:reverse})
+  res.json(data);
 })
+
 
 //add toy to db
 
@@ -79,13 +91,13 @@ router.put("/:idEdit",auth, async(req,res) => {
 
   
 //?s=  search in mytoys
-router.get("/mytoys/search",auth , async(req,res) => {
+router.get("/search", async(req,res) => {
   let perPage = req.query.perPage || 2
  let page = (req.query.page >=1) ? req.query.page -1: 0;
   try{
     let search = req.query.s;
     let expSearch = new RegExp(search, "i");
-    let data = await toyModel.find({user_id:req.userToken._id,$or:[{name:expSearch},{info:expSearch}]}).limit(Number(perPage))
+    let data = await toyModel.find({$or:[{name:expSearch},{info:expSearch}]}).limit(Number(perPage))
     .skip(page * perPage);
     res.json(data)
   }
@@ -96,12 +108,12 @@ router.get("/mytoys/search",auth , async(req,res) => {
 })
 
   //by category
-router.get("/cat/:catname",auth, async(req,res) => {
+router.get("/cat/:catname", async(req,res) => {
   let catname = req.params.catname;
   let perPage = req.query.perPage || 2
   let page = (req.query.page >=1) ? req.query.page -1: 0;
   try{
-    let data = await toyModel.find({user_id:req.userToken._id,category:catname}).limit(Number(perPage))
+    let data = await toyModel.find({category:catname}).limit(Number(perPage))
     .skip(page * perPage);;
     res.json(data);
   }
